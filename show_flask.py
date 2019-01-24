@@ -10,18 +10,22 @@ table = 'overview'
 sql = 'SELECT * FROM overview'
 cursor.execute(sql)
 # 获取所有记录列表
-results = cursor.fetchall()
+# results = cursor.fetchall()
 
 
 @app.route('/')
 def index():
     data = get_data()
-    return f'<h1>{data}</h1>'
+    if data:
+        return f'<h1>{data}</h1>'
+    else:
+        return f'<h1>数据到底啦</h1>'
 
 
 def get_data():
     try:
-        row = random.choice(results)
+        row = cursor.fetchone()
+        # row = random.choice(results)
         return row
     except:
         print('Error')
