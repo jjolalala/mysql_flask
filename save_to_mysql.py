@@ -4,6 +4,7 @@ import os
 import re
 import pymysql
 from pymysql.err import IntegrityError
+import json
 
 url = 'https://movie.douban.com/subject/26425063/'
 headers = {
@@ -53,5 +54,5 @@ def save_to_sql(data):
 
 
 if __name__ == '__main__':
-    # data = crawl()
-    save_to_sql({'啦啦啦':'一只小狗'})
+    data = crawl()
+    save_to_sql(data)
